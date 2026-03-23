@@ -37,10 +37,15 @@ int main(int argc, char** argv) {
     std::string configFilePath = argv[1];
     double simTime = (argc > 2) ? std::stod(argv[2]) : 500;
 
-    // output goes to simulation_results/<config_name>_output.csv
-    std::filesystem::create_directories("simulation_results");
+    // output goes to logs/<config_name>_grid_log.csv
+    std::filesystem::create_directories("logs");
     std::string configName = std::filesystem::path(configFilePath).stem().string();
-    std::string logFile = "simulation_results/" + configName + "_output.csv";
+    // strip _config suffix if present so log name matches viewer convention
+    std::string baseName = configName;
+    if (baseName.size() > 7 && baseName.substr(baseName.size() - 7) == "_config") {
+        baseName = baseName.substr(0, baseName.size() - 7);
+    }
+    std::string logFile = "logs/" + baseName + "_grid_log.csv";
 
     auto model = std::make_shared<GridCellDEVSCoupled<ChessVariantState, double>>(
         "chessVariant", addGridCell, configFilePath);

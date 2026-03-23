@@ -119,16 +119,16 @@ This produces the executable at `bin/chess_variant`.
 ### Run a single scenario
 
 ```bash
-./bin/chess_variant config/<scenario_name>.json <simulation_time>
+./bin/chess_variant config/<scenario_name>_config.json <simulation_time>
 ```
 
 Example — run Kernel 1 for 60 generations:
 
 ```bash
-./bin/chess_variant config/chessVariantKernel1.json 60
+./bin/chess_variant config/chessVariantKernel1_config.json 60
 ```
 
-Output CSV is written to `logs/<scenario_name>_output.csv`.
+Output CSV is written to `logs/<scenario_name>_grid_log.csv`.
 
 ### Run all 14 scenarios at once
 
@@ -144,30 +144,30 @@ bash scripts/run_all_scenarios.sh
 
 | Scenario | Config File | Grid | Seed |
 |----------|-------------|------|------|
-| Kernel 1 | `chessVariantKernel1.json` | 9×13, wrapped | Plus shape (5 cells) |
-| Kernel 2 | `chessVariantKernel2.json` | 9×13, wrapped | Asymmetric cluster (7 cells) |
-| Kernel 1 Small Grid | `chessVariantKernel1SmallGrid.json` | 7×7, wrapped | Plus centred (5 cells) |
-| Kernel 2 Small Grid | `chessVariantKernel2SmallGrid.json` | 5×9, wrapped | Asymmetric (7 cells) |
+| Kernel 1 | `chessVariantKernel1_config.json` | 9×13, wrapped | Plus shape (5 cells) |
+| Kernel 2 | `chessVariantKernel2_config.json` | 9×13, wrapped | Asymmetric cluster (7 cells) |
+| Kernel 1 Small Grid | `chessVariantKernel1SmallGrid_config.json` | 7×7, wrapped | Plus centred (5 cells) |
+| Kernel 2 Small Grid | `chessVariantKernel2SmallGrid_config.json` | 5×9, wrapped | Asymmetric (7 cells) |
 
 ### Group B — Moore Neighbourhood Experiments
 
 | Scenario | Config File | Grid | Description |
 |----------|-------------|------|-------------|
-| Glider Seed | `chessVariantKernel1_glider.json` | 9×13, wrapped | Classic Game of Life glider seed |
-| Horizontal Line | `chessVariantKernel1_line.json` | 9×13, wrapped | 7-cell horizontal line seed |
-| No-Wrap Boundary | `chessVariantKernel1_noWrap.json` | 9×13, **not** wrapped | Fixed boundary comparison |
-| Large Grid | `chessVariantKernel1_large.json` | 20×20, wrapped | Unconstrained free expansion |
+| Glider Seed | `chessVariantKernel1_glider_config.json` | 9×13, wrapped | Classic Game of Life glider seed |
+| Horizontal Line | `chessVariantKernel1_line_config.json` | 9×13, wrapped | 7-cell horizontal line seed |
+| No-Wrap Boundary | `chessVariantKernel1_noWrap_config.json` | 9×13, **not** wrapped | Fixed boundary comparison |
+| Large Grid | `chessVariantKernel1_large_config.json` | 20×20, wrapped | Unconstrained free expansion |
 
 ### Group C — Chess-Piece Neighbourhood Extensions
 
 | Scenario | Config File | Grid | Neighbourhood |
 |----------|-------------|------|---------------|
-| Bishop 8×8 | `bishopNeighborhood_8x8.json` | 8×8, not wrapped | Full diagonal movement |
-| Bishop 9×13 | `bishopNeighborhood_9x13.json` | 9×13, wrapped | Full diagonal movement |
-| Rook 8×8 | `rookNeighborhood_8x8.json` | 8×8, not wrapped | Full orthogonal movement |
-| Knight 8×8 | `knightNeighborhood_8x8.json` | 8×8, not wrapped | L-shaped knight moves |
-| Knight 9×13 | `knightNeighborhood_9x13.json` | 9×13, wrapped | L-shaped knight moves |
-| Multi-piece 8×8 | `multiPiece_8x8.json` | 8×8, not wrapped | Knight default + bishop zones |
+| Bishop 8×8 | `bishopNeighborhood_8x8_config.json` | 8×8, not wrapped | Full diagonal movement |
+| Bishop 9×13 | `bishopNeighborhood_9x13_config.json` | 9×13, wrapped | Full diagonal movement |
+| Rook 8×8 | `rookNeighborhood_8x8_config.json` | 8×8, not wrapped | Full orthogonal movement |
+| Knight 8×8 | `knightNeighborhood_8x8_config.json` | 8×8, not wrapped | L-shaped knight moves |
+| Knight 9×13 | `knightNeighborhood_9x13_config.json` | 9×13, wrapped | L-shaped knight moves |
+| Multi-piece 8×8 | `multiPiece_8x8_config.json` | 8×8, not wrapped | Knight default + bishop zones |
 
 ---
 
