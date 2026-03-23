@@ -69,7 +69,7 @@ export CADMIUM=/path/to/cadmium_v2/include/cadmium
 ## Cloning the Repository
 
 ```bash
-git clone https://github.com/[YOUR_USERNAME]/chess-variants-cell-devs.git
+git clone https://github.com/hajarassim/chess-variants-cell-devs.git
 cd chess-variants-cell-devs
 ```
 
