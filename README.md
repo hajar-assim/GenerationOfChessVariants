@@ -39,33 +39,47 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 
 ---
 
-## Dependencies
+## Prerequisites
 
-This project is designed to run on a **Linux-based environment (e.g., Ubuntu)** and
-requires **Cadmium v2** to be installed and accessible via the `$CADMIUM` environment variable.
-
-This dependency is typically met by default on the DEVSsim servers.
-
-To verify your Cadmium installation:
-
-```bash
-echo $CADMIUM
-```
-
-If the variable is empty, set it manually:
-
-```bash
-export CADMIUM=/path/to/cadmium_v2/include/cadmium
-```
+- **C++17 compatible compiler** (g++ 8+ recommended)
+- **Cadmium v2 framework**
+- **Linux-based environment** (e.g., Ubuntu) or compatible system
 
 ---
 
-## Cloning the Repository
+## Setup
+
+### Clone this repository
 
 ```bash
-git clone https://github.com/hajarassim/chess-variants-cell-devs.git
-cd chess-variants-cell-devs
+git clone https://github.com/hajar-assim/GenerationOfChessVariants.git
+cd GenerationOfChessVariants
 ```
+
+### Clone Cadmium v2 (if not already installed)
+
+Target the `dev-rt` branch:
+
+```bash
+cd ~
+git clone https://github.com/SimulationEverywhere/cadmium_v2 -b dev-rt
+```
+
+### Configure Cadmium Path
+
+The build script defaults to `~/cadmium_v2`. If your Cadmium is installed elsewhere, set the `CADMIUM_HOME` environment variable:
+
+```bash
+export CADMIUM_HOME=/path/to/your/cadmium_v2
+```
+
+Or edit the makefile/build script directly:
+
+```
+CADMIUM_HOME ?= /your/custom/path
+```
+
+**Note:** On the DEVSsim servers, Cadmium v2 is typically pre-installed and accessible via the `$CADMIUM` environment variable.
 
 ---
 
