@@ -8,20 +8,25 @@
     "default": {
       "delay": "transport",
       "model": "chessVariant",
-      "state": { "alive": 0 },
-      "neighborhood": [{ "type": "moore", "range": 1 }]
+      "state": {
+        "alive": 0
+      },
+      "neighborhood": [
+        { "type": "moore", "range": 1 }
+      ]
     },
-    "seed_pattern": {
+    "horizontal_line": {
       "state": { "alive": 1 },
-      "cell_map": [[4,3], [4,4], [4,5], [4,6], [4,7], [4,8], [4,9]]
+      "cell_map": [
+        [4, 3], [4, 4], [4, 5], [4, 6], [4, 7], [4, 8], [4, 9]
+      ]
     }
   },
-  "viewer": {
-    "colors": {
-      "alive": {
-        "0": "#FFFFFF",
-        "1": "#000000"
-      }
+  "viewer": [
+    {
+      "colors": [[255, 255, 255], [0, 0, 0]],
+      "breaks": [0, 0.5, 1],
+      "field": "alive"
     }
-  }
+  ]
 }

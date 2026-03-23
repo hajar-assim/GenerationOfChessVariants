@@ -42,8 +42,22 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 ## Prerequisites
 
 - **C++17 compatible compiler** (g++ 8+ recommended)
+- **CMake** (version 3.14 or higher)
 - **Cadmium v2 framework**
 - **Linux-based environment** (e.g., Ubuntu) or compatible system
+
+### Installing CMake
+
+**macOS:**
+```bash
+brew install cmake
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt-get update
+sudo apt-get install cmake
+```
 
 ---
 
@@ -67,19 +81,26 @@ git clone https://github.com/SimulationEverywhere/cadmium_v2 -b dev-rt
 
 ### Configure Cadmium Path
 
-The build script defaults to `~/cadmium_v2`. If your Cadmium is installed elsewhere, set the `CADMIUM_HOME` environment variable:
+Set the `CADMIUM` environment variable to point to your Cadmium v2 **include** directory:
 
 ```bash
-export CADMIUM_HOME=/path/to/your/cadmium_v2
+export CADMIUM=~/cadmium_v2/include
 ```
 
-Or edit the makefile/build script directly:
+If your Cadmium is installed elsewhere:
 
-```
-CADMIUM_HOME ?= /your/custom/path
+```bash
+export CADMIUM=/path/to/your/cadmium_v2/include
 ```
 
-**Note:** On the DEVSsim servers, Cadmium v2 is typically pre-installed and accessible via the `$CADMIUM` environment variable.
+**Tip:** Add this export to your `~/.bashrc` or `~/.zshrc` to make it persistent:
+
+```bash
+echo 'export CADMIUM=~/cadmium_v2/include' >> ~/.bashrc  # or ~/.zshrc for zsh
+source ~/.bashrc  # or source ~/.zshrc
+```
+
+**Note:** On the DEVSsim servers, Cadmium v2 is typically pre-installed and the `$CADMIUM` environment variable is already configured.
 
 ---
 

@@ -4,54 +4,27 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-/**
- * @brief State structure for the Chess Variant Cell-DEVS model.
- *
- * Each cell has a binary state: alive (1) or dead (0).
- * Based on Fridenfalk's rule: cell is 1 if it has 2-3 neighbors, else 0.
- */
+// cell state for the chess variant model
+// each cell is just alive (1) or dead (0)
+// uses B23/S23 rules - cell is alive if 2 or 3 neighbors are alive
 struct ChessVariantState {
-    int state;  // 0 = dead, 1 = alive
+    int alive;  // 0 = dead 1 = alive
 
-    ChessVariantState() : state(0) {}
-    explicit ChessVariantState(int s) : state(s) {}
+    ChessVariantState() : alive(0) {}
+    explicit ChessVariantState(int a) : alive(a) {}
 };
 
-/**
- * @brief Equality operator for state comparison.
- * Used by Cadmium to detect state changes.
- */
-inline bool operator==(const ChessVariantState& lhs, const ChessVariantState& rhs) {
-    return lhs.state == rhs.state;
+inline bool operator!=(const ChessVariantState& a, const ChessVariantState& b) {
+    return a.alive != b.alive;
 }
 
-/**
- * @brief Inequality operator for state comparison.
- */
-inline bool operator!=(const ChessVariantState& lhs, const ChessVariantState& rhs) {
-    return !(lhs == rhs);
-}
-
-/**
- * @brief Output stream operator for logging.
- */
 inline std::ostream& operator<<(std::ostream& os, const ChessVariantState& s) {
-    os << s.state;
+    os << "<" << s.alive << ">";
     return os;
 }
 
-/**
- * @brief JSON serialization for Cadmium configuration.
- */
 inline void from_json(const nlohmann::json& j, ChessVariantState& s) {
-    s.state = j.at("alive").get<int>();
-}
-
-/**
- * @brief JSON deserialization for output logging.
- */
-inline void to_json(nlohmann::json& j, const ChessVariantState& s) {
-    j = nlohmann::json{{"alive", s.state}};
+    j.at("alive").get_to(s.alive);
 }
 
 #endif // CHESS_VARIANT_STATE_HPP

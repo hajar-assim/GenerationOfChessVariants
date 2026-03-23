@@ -1,68 +1,52 @@
 #ifndef CHESS_VARIANT_CELL_HPP
 #define CHESS_VARIANT_CELL_HPP
 
-#include <cmath>
-#include <nlohmann/json.hpp>
-#include <cadmium/celldevs/core/cell.hpp>
+#include <cadmium/modeling/celldevs/grid/cell.hpp>
+#include <cadmium/modeling/celldevs/grid/config.hpp>
 #include "chessVariantState.hpp"
 
-/**
- * @brief Chess Variant Cell-DEVS cell implementing Fridenfalk's rule.
- *
- * Rule: A cell is set to 1 if it has exactly 2 or 3 live neighbors, else 0.
- * This rule applies regardless of the cell's current state, resulting in
- * higher reproduction rates than Conway's Game of Life.
- *
- * The neighborhood can be configured via JSON (Moore, Bishop, Rook, Knight, etc.)
- */
-template<typename T>
-class ChessVariantCell : public cadmium::celldevs::Cell<T, ChessVariantState> {
+// chess variant cell - implements the transition logic
+// counts live neighbors and applies B23/S23 rules
+// the original cd++ model uses trueCount which includes self in the count
+// so we count all neighbors then subtract self to get the actual neighbor count
+// both birth and survival conditions end up being the same: alive if 2 or 3 neighbors
+// transport delay of 1.0 per generation (rescaled from the original 100 units)
+class ChessVariantCell
+    : public cadmium::celldevs::GridCell<ChessVariantState, double> {
 public:
-    using cadmium::celldevs::Cell<T, ChessVariantState>::Cell;
+    using cadmium::celldevs::GridCell<ChessVariantState, double>::GridCell;
 
-    /**
-     * @brief Local computation function implementing Fridenfalk's transition rule.
-     *
-     * @param state Current state of the cell
-     * @return New state after applying the transition rule
-     */
-    [[nodiscard]] ChessVariantState localComputation(ChessVariantState state) const override {
-        // Count live neighbors (excluding self)
-        int aliveNeighbors = 0;
+    // count live neighbors and apply transition rules
+    [[nodiscard]] ChessVariantState localComputation(
+        ChessVariantState state,
+        const std::unordered_map<
+            cadmium::celldevs::coordinates,
+            cadmium::celldevs::NeighborData<ChessVariantState, double>
+        >& neighborhood) const override {
 
-        for (const auto& [neighborId, neighborState] : this->neighbors) {
-            // Skip self (neighbor at relative position (0,0,...))
-            bool isSelf = true;
-            for (const auto& coord : neighborId) {
-                if (coord != 0) {
-                    isSelf = false;
-                    break;
-                }
-            }
-            if (isSelf) {
-                continue;
-            }
-
-            // Count if neighbor is alive
-            if (neighborState.state == 1) {
-                aliveNeighbors++;
+        // count all live cells in neighborhood including self
+        int liveCount = 0;
+        for (const auto& [neighborId, neighborData] : neighborhood) {
+            if (neighborData.state->alive == 1) {
+                liveCount++;
             }
         }
+        // subtract self so we only count actual neighbors
+        liveCount -= state.alive;
 
-        // Apply Fridenfalk's rule: cell is alive if exactly 2 or 3 neighbors
-        ChessVariantState newState;
-        newState.state = (aliveNeighbors == 2 || aliveNeighbors == 3) ? 1 : 0;
+        // alive if exactly 2 or 3 neighbors are alive otherwise dead
+        if (liveCount == 2 || liveCount == 3) {
+            state.alive = 1;
+        } else {
+            state.alive = 0;
+        }
 
-        return newState;
+        return state;
     }
 
-    /**
-     * @brief Output delay function.
-     *
-     * @param state Current state of the cell
-     * @return Time until next state transition (1 time unit)
-     */
-    [[nodiscard]] double outputDelay(const ChessVariantState& state) const override {
+    // transport delay of 1 time unit per generation
+    [[nodiscard]] double outputDelay(
+        const ChessVariantState& /* state */) const override {
         return 1.0;
     }
 };

@@ -1,15 +1,4 @@
 #!/bin/bash
-# Run Chess Variant Kernel 1 Small Grid scenario (7x7 wrapped)
-
-set -e
-
-EXECUTABLE="./bin/chess_variant"
-SIM_TIME=${1:-60}
-
-if [ ! -f "$EXECUTABLE" ]; then
-    echo "Error: Executable not found. Run 'bash build_sim.sh' first."
-    exit 1
-fi
-
-mkdir -p logs
-$EXECUTABLE config/chessVariantKernel1SmallGrid.json $SIM_TIME
+# run kernel 1 on 7x7 grid with plus seed
+SIM_TIME="${1:-60}"
+./bin/chess_variant config/chessVariantKernel1SmallGrid.json "$SIM_TIME"

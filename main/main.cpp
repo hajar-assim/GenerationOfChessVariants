@@ -1,73 +1,57 @@
+// chess variant cell-devs simulation driver
+// reads a json config and runs the simulation with csv logging
+// usage: ./chess_variant <config.json> [sim_time]
+
+#include "nlohmann/json.hpp"
+#include <cadmium/modeling/celldevs/grid/coupled.hpp>
+#include <cadmium/simulation/logger/csv.hpp>
+#include <cadmium/simulation/root_coordinator.hpp>
+#include <chrono>
 #include <fstream>
 #include <iostream>
 #include <string>
 #include <filesystem>
-#include <cadmium/celldevs/core/coupled.hpp>
-#include <cadmium/simulation/root_coordinator.hpp>
-#include <cadmium/simulation/logger/csv.hpp>
 #include "include/chessVariantCell.hpp"
-#include "include/chessVariantState.hpp"
 
 using namespace cadmium::celldevs;
 using namespace cadmium;
 
-int main(int argc, char* argv[]) {
-    // Check command line arguments
-    if (argc < 2 || argc > 3) {
-        std::cerr << "Usage: " << argv[0] << " <config.json> [simulation_time]" << std::endl;
-        std::cerr << "  config.json: Path to the scenario configuration file" << std::endl;
-        std::cerr << "  simulation_time: Optional simulation duration (default: 60)" << std::endl;
-        return 1;
+std::shared_ptr<GridCell<ChessVariantState, double>> addGridCell(
+    const coordinates& cellId,
+    const std::shared_ptr<const GridCellConfig<ChessVariantState, double>>& cellConfig) {
+    auto cellModel = cellConfig->cellModel;
+    if (cellModel == "chessVariant") {
+        return std::make_shared<ChessVariantCell>(cellId, cellConfig);
+    } else {
+        throw std::bad_typeid();
+    }
+}
+
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        std::cout << "Program used with wrong parameters. The program must be invoked as follows:" << std::endl;
+        std::cout << argv[0] << " SCENARIO_CONFIG.json [MAX_SIMULATION_TIME (default: 500)]" << std::endl;
+        return -1;
     }
 
-    std::string configPath = argv[1];
-    double simTime = (argc == 3) ? std::stod(argv[2]) : 60.0;
+    std::string configFilePath = argv[1];
+    double simTime = (argc > 2) ? std::stod(argv[2]) : 500;
 
-    // Extract scenario name from config path for output file
-    std::filesystem::path configFile(configPath);
-    std::string configName = configFile.stem().string();
+    // output goes to simulation_results/<config_name>_output.csv
+    std::filesystem::create_directories("simulation_results");
+    std::string configName = std::filesystem::path(configFilePath).stem().string();
+    std::string logFile = "simulation_results/" + configName + "_output.csv";
 
-    std::cout << "=== Chess Variant Cell-DEVS Simulation ===" << std::endl;
-    std::cout << "Configuration: " << configPath << std::endl;
-    std::cout << "Simulation time: " << simTime << " generations" << std::endl;
+    auto model = std::make_shared<GridCellDEVSCoupled<ChessVariantState, double>>(
+        "chessVariant", addGridCell, configFilePath);
+    model->buildModel();
 
-    // Create logs directory if it doesn't exist
-    std::filesystem::create_directories("logs");
-    std::string logFile = "logs/" + configName + "_output.csv";
+    auto rootCoordinator = RootCoordinator(model);
+    rootCoordinator.setLogger<CSVLogger>(logFile, ";");
 
-    try {
-        // Load JSON configuration
-        std::ifstream configStream(configPath);
-        if (!configStream.is_open()) {
-            std::cerr << "Error: Could not open configuration file: " << configPath << std::endl;
-            return 1;
-        }
-        nlohmann::json config = nlohmann::json::parse(configStream);
-        configStream.close();
+    rootCoordinator.start();
+    rootCoordinator.simulate(simTime);
+    rootCoordinator.stop();
 
-        // Create Cell-DEVS coupled model from JSON config
-        auto model = std::make_shared<CellDEVSCoupled<ChessVariantState, ChessVariantCell>>("chessVariant", config);
-
-        // Create root coordinator with CSV logger
-        auto rootCoordinator = RootCoordinator(model);
-
-        // Set up CSV logging
-        auto logger = std::make_shared<CSVLogger>(logFile, ";");
-        rootCoordinator.setLogger(logger);
-
-        // Run simulation
-        std::cout << "Starting simulation..." << std::endl;
-        rootCoordinator.start();
-        rootCoordinator.simulate(simTime);
-        rootCoordinator.stop();
-
-        std::cout << "Simulation completed successfully." << std::endl;
-        std::cout << "Output written to: " << logFile << std::endl;
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error during simulation: " << e.what() << std::endl;
-        return 1;
-    }
-
-    return 0;
+    std::cout << "Simulation complete. Output: " << logFile << std::endl;
 }
