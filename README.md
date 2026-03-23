@@ -1,15 +1,12 @@
 # Generation of Chess Variants — Cell-DEVS Model
 
-## Authors
+**Authors:** Hajar Assim 101232456, Hasib Khodayar 101225523
 
-| Name | Student Number |
-|------|----------------|
-| Hajar Assim | 101232456 |
-| Hasib Khodayar | 101225523 |
+**Course:** SYSC 5104/4906G - Methodologies for Discrete Event Modelling and Simulation
 
-**Course:** SYSC 5104 — Methodologies for Discrete Event Modelling and Simulation
 **Instructor:** Dr. Gabriel Wainer
-**Submitted:** March 24, 2026
+
+**Due Date:** March 24, 2026
 
 ---
 
