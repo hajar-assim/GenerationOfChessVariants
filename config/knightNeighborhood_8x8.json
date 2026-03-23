@@ -1,27 +1,33 @@
 {
-    "scenario": {
-        "name": "knightNeighborhood_8x8",
-        "description": "8x8 non-wrapped grid with L-shaped (knight) movement neighborhood"
-    },
-    "cell": {
-        "shape": [8, 8],
-        "wrapped": false,
-        "neighborhood": [
-            [-2, -1], [-2, 1],
-            [-1, -2], [-1, 2],
-            [0, 0],
-            [1, -2], [1, 2],
-            [2, -1], [2, 1]
-        ],
-        "default": {
-            "state": 0
-        },
-        "cells": [
-            {"id": [3, 4], "state": {"state": 1}},
-            {"id": [4, 3], "state": {"state": 1}},
-            {"id": [4, 4], "state": {"state": 1}},
-            {"id": [4, 5], "state": {"state": 1}},
-            {"id": [5, 4], "state": {"state": 1}}
+  "scenario": {
+    "shape": [8, 8],
+    "origin": [0, 0],
+    "wrapped": false
+  },
+  "cells": {
+    "default": {
+      "delay": "transport",
+      "model": "chessVariant",
+      "state": { "alive": 0 },
+      "neighborhood": [{
+        "type": "relative",
+        "neighbors": [
+          [-2,-1], [-2,1], [-1,-2], [-1,2],
+          [1,-2], [1,2], [2,-1], [2,1]
         ]
+      }]
+    },
+    "seed_pattern": {
+      "state": { "alive": 1 },
+      "cell_map": [[3,4], [4,3], [4,4], [4,5], [5,4]]
     }
+  },
+  "viewer": {
+    "colors": {
+      "alive": {
+        "0": "#FFFFFF",
+        "1": "#000000"
+      }
+    }
+  }
 }

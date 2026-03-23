@@ -8,7 +8,7 @@
  * @brief State structure for the Chess Variant Cell-DEVS model.
  *
  * Each cell has a binary state: alive (1) or dead (0).
- * This implements the B23/S23 rule (similar to Conway's Game of Life).
+ * Based on Fridenfalk's rule: cell is 1 if it has 2-3 neighbors, else 0.
  */
 struct ChessVariantState {
     int state;  // 0 = dead, 1 = alive
@@ -44,14 +44,14 @@ inline std::ostream& operator<<(std::ostream& os, const ChessVariantState& s) {
  * @brief JSON serialization for Cadmium configuration.
  */
 inline void from_json(const nlohmann::json& j, ChessVariantState& s) {
-    s.state = j.at("state").get<int>();
+    s.state = j.at("alive").get<int>();
 }
 
 /**
  * @brief JSON deserialization for output logging.
  */
 inline void to_json(nlohmann::json& j, const ChessVariantState& s) {
-    j = nlohmann::json{{"state", s.state}};
+    j = nlohmann::json{{"alive", s.state}};
 }
 
 #endif // CHESS_VARIANT_STATE_HPP

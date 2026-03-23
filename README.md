@@ -12,17 +12,11 @@
 
 ## Introduction
 
-This repository contains a Cell-DEVS implementation of the **Generation of Chess Variants**
-cellular automaton model, re-implemented in Cadmium v2 for SYSC 5104 Assignment 2.
+This repository presents a Cell-DEVS model that simulates the Generation of Chess Variants cellular automaton, re-implemented in Cadmium v2.
 
-The model is a variant of Conway's Game of Life using rule **B23/S23** (a cell is alive if
-exactly 2 or 3 of its neighbours are alive) applied to a 2D grid. Starting from small seed
-configurations, the automaton produces chess-like spatial patterns.
+The model is based on the original CD++ implementation by Mikael Fridenfalk (Uppsala University), which uses a modified Game of Life rule: a cell is set to 1 if it has exactly 2 or 3 neighbours, otherwise it is set to 0. This high-reproduction rule, combined with small modular grids, generates patterns suitable for chess variant board configurations.
 
-As a two-person team submission, the model extends the original four baseline scenarios
-with ten additional configurations: four varying initial conditions and boundary settings
-under the standard Moore neighbourhood, and six substituting chess-piece movement patterns
-(bishop, rook, knight, multi-piece) as the cell neighbourhood topology.
+The system extends the original four baseline scenarios with ten additional configurations exploring different initial conditions, boundary settings, and chess-piece movement patterns (bishop, rook, knight) as alternative neighbourhood topologies.
 
 The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVariants_Report.pdf).
 
@@ -157,12 +151,12 @@ Video recordings of selected scenarios are available in the `videos/` folder.
 
 ## Key Findings
 
-The B23/S23 rule is calibrated for neighbourhoods of approximately 8 cells:
+The 2-3 neighbour rule is calibrated for neighbourhoods of approximately 8 cells:
 
-- **Moore neighbourhood (η=9):** Sustained active patterns across all 60 generations
-- **Knight neighbourhood (η=9):** Sustained patterns on wrapped grid; stable fixed point on 8×8
-- **Bishop neighbourhood (η≤29):** Near-extinction; collapses to 4 corner cells (8×8) or 2 cells (9×13)
-- **Rook neighbourhood (η=29):** Complete extinction by generation 2
+- **Moore neighbourhood (8 neighbours):** Sustained active patterns across all 60 generations
+- **Knight neighbourhood (8 neighbours):** Sustained patterns on wrapped grid; stable fixed point on 8×8
+- **Bishop neighbourhood (up to 28 neighbours):** Rapid extinction due to oversaturation
+- **Rook neighbourhood (up to 28 neighbours):** Complete extinction by generation 2
 
 Early simulation halting for bishop and rook scenarios is **correct Cell-DEVS behaviour** —
 Cadmium stops generating events once all cells reach a globally quiescent (passive) state.
@@ -171,6 +165,6 @@ Cadmium stops generating events once all cells reach a globally quiescent (passi
 
 ## Reference
 
-Wainer, G. (n.d.). *Generation of Chess Variants*. Cell-DEVS Model Samples,
-Carleton University. Retrieved March 2026 from
+Fridenfalk, M. (2013). Application of Cellular Automata for Generation of Chess Variants.
+*Uppsala University, Department of Game Design*. CD++ model available at
 https://www.sce.carleton.ca/faculty/wainer/wbgraf/doku.php?id=model_samples:start

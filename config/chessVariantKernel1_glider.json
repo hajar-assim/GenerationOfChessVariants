@@ -1,25 +1,27 @@
 {
-    "scenario": {
-        "name": "chessVariantKernel1_glider",
-        "description": "9x13 wrapped grid with classic Game of Life glider seed"
+  "scenario": {
+    "shape": [9, 13],
+    "origin": [0, 0],
+    "wrapped": true
+  },
+  "cells": {
+    "default": {
+      "delay": "transport",
+      "model": "chessVariant",
+      "state": { "alive": 0 },
+      "neighborhood": [{ "type": "moore", "range": 1 }]
     },
-    "cell": {
-        "shape": [9, 13],
-        "wrapped": true,
-        "neighborhood": [
-            [-1, -1], [-1, 0], [-1, 1],
-            [0, -1],  [0, 0],  [0, 1],
-            [1, -1],  [1, 0],  [1, 1]
-        ],
-        "default": {
-            "state": 0
-        },
-        "cells": [
-            {"id": [1, 2], "state": {"state": 1}},
-            {"id": [2, 3], "state": {"state": 1}},
-            {"id": [3, 1], "state": {"state": 1}},
-            {"id": [3, 2], "state": {"state": 1}},
-            {"id": [3, 3], "state": {"state": 1}}
-        ]
+    "seed_pattern": {
+      "state": { "alive": 1 },
+      "cell_map": [[1,2], [2,3], [3,1], [3,2], [3,3]]
     }
+  },
+  "viewer": {
+    "colors": {
+      "alive": {
+        "0": "#FFFFFF",
+        "1": "#000000"
+      }
+    }
+  }
 }

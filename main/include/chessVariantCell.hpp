@@ -7,12 +7,11 @@
 #include "chessVariantState.hpp"
 
 /**
- * @brief Chess Variant Cell-DEVS cell implementing B23/S23 rules.
+ * @brief Chess Variant Cell-DEVS cell implementing Fridenfalk's rule.
  *
- * This is a variant of Conway's Game of Life where:
- * - A live cell survives if it has exactly 2 or 3 live neighbors
- * - A dead cell becomes alive if it has exactly 2 or 3 live neighbors
- * - Otherwise, the cell dies or stays dead
+ * Rule: A cell is set to 1 if it has exactly 2 or 3 live neighbors, else 0.
+ * This rule applies regardless of the cell's current state, resulting in
+ * higher reproduction rates than Conway's Game of Life.
  *
  * The neighborhood can be configured via JSON (Moore, Bishop, Rook, Knight, etc.)
  */
@@ -22,7 +21,7 @@ public:
     using cadmium::celldevs::Cell<T, ChessVariantState>::Cell;
 
     /**
-     * @brief Local computation function implementing the B23/S23 transition rule.
+     * @brief Local computation function implementing Fridenfalk's transition rule.
      *
      * @param state Current state of the cell
      * @return New state after applying the transition rule
@@ -50,24 +49,9 @@ public:
             }
         }
 
-        // Apply B23/S23 rules
+        // Apply Fridenfalk's rule: cell is alive if exactly 2 or 3 neighbors
         ChessVariantState newState;
-
-        if (state.state == 1) {
-            // Cell is alive: survives with 2 or 3 neighbors
-            if (aliveNeighbors == 2 || aliveNeighbors == 3) {
-                newState.state = 1;
-            } else {
-                newState.state = 0;
-            }
-        } else {
-            // Cell is dead: born with 2 or 3 neighbors
-            if (aliveNeighbors == 2 || aliveNeighbors == 3) {
-                newState.state = 1;
-            } else {
-                newState.state = 0;
-            }
-        }
+        newState.state = (aliveNeighbors == 2 || aliveNeighbors == 3) ? 1 : 0;
 
         return newState;
     }

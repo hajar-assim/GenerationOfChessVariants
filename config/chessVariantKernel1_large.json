@@ -1,25 +1,27 @@
 {
-    "scenario": {
-        "name": "chessVariantKernel1_large",
-        "description": "20x20 wrapped grid with plus-shaped seed - Unconstrained expansion"
+  "scenario": {
+    "shape": [20, 20],
+    "origin": [0, 0],
+    "wrapped": true
+  },
+  "cells": {
+    "default": {
+      "delay": "transport",
+      "model": "chessVariant",
+      "state": { "alive": 0 },
+      "neighborhood": [{ "type": "moore", "range": 1 }]
     },
-    "cell": {
-        "shape": [20, 20],
-        "wrapped": true,
-        "neighborhood": [
-            [-1, -1], [-1, 0], [-1, 1],
-            [0, -1],  [0, 0],  [0, 1],
-            [1, -1],  [1, 0],  [1, 1]
-        ],
-        "default": {
-            "state": 0
-        },
-        "cells": [
-            {"id": [9, 10], "state": {"state": 1}},
-            {"id": [10, 9], "state": {"state": 1}},
-            {"id": [10, 10], "state": {"state": 1}},
-            {"id": [10, 11], "state": {"state": 1}},
-            {"id": [11, 10], "state": {"state": 1}}
-        ]
+    "seed_pattern": {
+      "state": { "alive": 1 },
+      "cell_map": [[9,10], [10,9], [10,10], [10,11], [11,10]]
     }
+  },
+  "viewer": {
+    "colors": {
+      "alive": {
+        "0": "#FFFFFF",
+        "1": "#000000"
+      }
+    }
+  }
 }
