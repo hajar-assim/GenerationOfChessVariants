@@ -1,0 +1,30 @@
+# Build artifacts
+build/
+bin/
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.user
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*~
+
+# Python cache
+__pycache__/
+*.pyc
+convert_to_docx.py

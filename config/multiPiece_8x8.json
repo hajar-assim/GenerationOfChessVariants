@@ -1,0 +1,28 @@
+{
+    "scenario": {
+        "name": "multiPiece_8x8",
+        "description": "8x8 non-wrapped grid with combined knight + bishop neighborhood"
+    },
+    "cell": {
+        "shape": [8, 8],
+        "wrapped": false,
+        "neighborhood": [
+            [-2, -1], [-2, 1],
+            [-1, -2], [-1, -1], [-1, 1], [-1, 2],
+            [0, 0],
+            [1, -2], [1, -1], [1, 1], [1, 2],
+            [2, -1], [2, 1],
+            [-2, -2], [-2, 2], [2, -2], [2, 2]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [3, 4], "state": {"state": 1}},
+            {"id": [4, 3], "state": {"state": 1}},
+            {"id": [4, 4], "state": {"state": 1}},
+            {"id": [4, 5], "state": {"state": 1}},
+            {"id": [5, 4], "state": {"state": 1}}
+        ]
+    }
+}

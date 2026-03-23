@@ -1,0 +1,27 @@
+{
+    "scenario": {
+        "name": "chessVariantKernel1_line",
+        "description": "9x13 wrapped grid with 7-cell horizontal line seed"
+    },
+    "cell": {
+        "shape": [9, 13],
+        "wrapped": true,
+        "neighborhood": [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],  [0, 0],  [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [4, 3], "state": {"state": 1}},
+            {"id": [4, 4], "state": {"state": 1}},
+            {"id": [4, 5], "state": {"state": 1}},
+            {"id": [4, 6], "state": {"state": 1}},
+            {"id": [4, 7], "state": {"state": 1}},
+            {"id": [4, 8], "state": {"state": 1}},
+            {"id": [4, 9], "state": {"state": 1}}
+        ]
+    }
+}

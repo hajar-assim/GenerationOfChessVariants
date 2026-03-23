@@ -1,0 +1,27 @@
+{
+    "scenario": {
+        "name": "chessVariantKernel2SmallGrid",
+        "description": "5x9 wrapped grid with asymmetric cluster seed (7 cells)"
+    },
+    "cell": {
+        "shape": [5, 9],
+        "wrapped": true,
+        "neighborhood": [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],  [0, 0],  [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [1, 4], "state": {"state": 1}},
+            {"id": [1, 5], "state": {"state": 1}},
+            {"id": [2, 3], "state": {"state": 1}},
+            {"id": [2, 4], "state": {"state": 1}},
+            {"id": [2, 5], "state": {"state": 1}},
+            {"id": [3, 3], "state": {"state": 1}},
+            {"id": [3, 4], "state": {"state": 1}}
+        ]
+    }
+}

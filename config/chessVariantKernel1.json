@@ -1,0 +1,25 @@
+{
+    "scenario": {
+        "name": "chessVariantKernel1",
+        "description": "9x13 wrapped grid with plus-shaped seed (5 cells) - Original CD++ Kernel 1"
+    },
+    "cell": {
+        "shape": [9, 13],
+        "wrapped": true,
+        "neighborhood": [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],  [0, 0],  [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [3, 6], "state": {"state": 1}},
+            {"id": [4, 5], "state": {"state": 1}},
+            {"id": [4, 6], "state": {"state": 1}},
+            {"id": [4, 7], "state": {"state": 1}},
+            {"id": [5, 6], "state": {"state": 1}}
+        ]
+    }
+}

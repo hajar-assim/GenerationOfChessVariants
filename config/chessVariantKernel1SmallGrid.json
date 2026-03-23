@@ -1,0 +1,25 @@
+{
+    "scenario": {
+        "name": "chessVariantKernel1SmallGrid",
+        "description": "7x7 wrapped grid with centred plus-shaped seed (5 cells)"
+    },
+    "cell": {
+        "shape": [7, 7],
+        "wrapped": true,
+        "neighborhood": [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],  [0, 0],  [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [2, 3], "state": {"state": 1}},
+            {"id": [3, 2], "state": {"state": 1}},
+            {"id": [3, 3], "state": {"state": 1}},
+            {"id": [3, 4], "state": {"state": 1}},
+            {"id": [4, 3], "state": {"state": 1}}
+        ]
+    }
+}

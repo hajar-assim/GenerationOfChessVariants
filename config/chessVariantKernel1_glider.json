@@ -1,0 +1,25 @@
+{
+    "scenario": {
+        "name": "chessVariantKernel1_glider",
+        "description": "9x13 wrapped grid with classic Game of Life glider seed"
+    },
+    "cell": {
+        "shape": [9, 13],
+        "wrapped": true,
+        "neighborhood": [
+            [-1, -1], [-1, 0], [-1, 1],
+            [0, -1],  [0, 0],  [0, 1],
+            [1, -1],  [1, 0],  [1, 1]
+        ],
+        "default": {
+            "state": 0
+        },
+        "cells": [
+            {"id": [1, 2], "state": {"state": 1}},
+            {"id": [2, 3], "state": {"state": 1}},
+            {"id": [3, 1], "state": {"state": 1}},
+            {"id": [3, 2], "state": {"state": 1}},
+            {"id": [3, 3], "state": {"state": 1}}
+        ]
+    }
+}
