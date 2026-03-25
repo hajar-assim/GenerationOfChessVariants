@@ -18,7 +18,7 @@ The model is based on the original CD++ implementation by Mikael Fridenfalk (Upp
 
 The system extends the original four baseline scenarios with ten additional configurations exploring different initial conditions, boundary settings, and chess-piece movement patterns (bishop, rook, knight) as alternative neighbourhood topologies.
 
-The full report is available in [`SYSC4906_A2_ChessVariants_Report.docx`](SYSC4906_A2_ChessVariants_Report.docx).
+The full report is available in [`GenerationOfChessVariants_CellDEVS_Report.docx`](GenerationOfChessVariants_CellDEVS_Report.docx).
 
 ---
 
@@ -26,17 +26,17 @@ The full report is available in [`SYSC4906_A2_ChessVariants_Report.docx`](SYSC49
 
 ```
 .
-├── main/                                   # C++ source code (chessVariantCell.hpp, chessVariantState.hpp, main.cpp)
-├── config/                                 # JSON scenario configuration files (14 scenarios)
-├── scripts/                                # Shell scripts to run each scenario
-├── logs/                                   # Simulation output CSV logs (14 files)
-├── simulation_videos/                      # Simulation visualization videos
-├── CMakeLists.txt                          # Top-level CMake configuration
-├── build_sim.sh                            # Build script
-├── .gitattributes                          # Ensures LF line endings for scripts and CSVs
-├── DEVSmodelsForm.docx                     # The provided DEVSmodelsForm
-├── SYSC4906_A2_ChessVariants_Report.docx   # Report
-└── README.md                               # This file
+├── main/                                            # C++ source code (chessVariantCell.hpp, chessVariantState.hpp, main.cpp)
+├── config/                                          # JSON scenario configuration files (14 scenarios)
+├── scripts/                                         # Shell scripts to run each scenario
+├── logs/                                            # Simulation output CSV logs (14 files)
+├── simulation_videos/                               # Simulation visualization videos
+├── CMakeLists.txt                                   # Top-level CMake configuration
+├── build_sim.sh                                     # Build script
+├── .gitattributes                                   # Ensures LF line endings for scripts and CSVs
+├── DEVSmodelsForm.docx                              # The provided DEVSmodelsForm
+├── GenerationOfChessVariants_CellDEVS_Report.docx   # Report
+└── README.md                                        # This file
 ```
 
 ---
