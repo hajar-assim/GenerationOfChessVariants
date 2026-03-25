@@ -34,7 +34,7 @@ The full report is available in [`SYSC4906_A2_ChessVariants_Report.docx`](SYSC49
 ├── CMakeLists.txt                          # Top-level CMake configuration
 ├── build_sim.sh                            # Build script
 ├── .gitattributes                          # Ensures LF line endings for scripts and CSVs
-├── DEVSmodelsForm.pdf                      # The provided DEVSmodelsForm
+├── DEVSmodelsForm.docx                     # The provided DEVSmodelsForm
 ├── SYSC4906_A2_ChessVariants_Report.docx   # Report
 └── README.md                               # This file
 ```
