@@ -31,7 +31,7 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 ├── scripts/                # Shell scripts to run each scenario
 ├── logs/                   # Simulation output CSV logs (14 files)
 ├── docs/                   # Report PDF and screenshots
-├── videos/                 # Simulation visualization videos
+├── simulation_videos/      # Simulation visualization videos
 ├── CMakeLists.txt          # Top-level CMake configuration
 ├── build_sim.sh            # Build script
 ├── .gitattributes          # Ensures LF line endings for scripts and CSVs
@@ -180,7 +180,7 @@ to the Cell-DEVS Web Viewer:
 
 Cells coloured **black** = alive (state 1). Cells coloured **white** = dead (state 0).
 
-Video recordings of selected scenarios are available in the `videos/` folder.
+Video recordings of selected scenarios are available in the `simulation_videos/` folder.
 
 ---
 
