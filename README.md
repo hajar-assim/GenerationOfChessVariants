@@ -34,6 +34,7 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 ├── videos/                 # Simulation visualization videos
 ├── CMakeLists.txt          # Top-level CMake configuration
 ├── build_sim.sh            # Build script
+├── .gitattributes          # Ensures LF line endings for scripts and CSVs
 └── README.md               # This file
 ```
 
@@ -41,8 +42,8 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 
 ## Prerequisites
 
-- **C++17 compatible compiler** (g++ 8+ recommended)
-- **CMake** (version 3.14 or higher)
+- **C++20 compatible compiler** (g++ 11+ recommended)
+- **CMake** (version 3.16 or higher)
 - **Cadmium v2 framework**
 - **Linux-based environment** (e.g., Ubuntu) or compatible system
 
@@ -56,7 +57,7 @@ brew install cmake
 **Ubuntu/Debian:**
 ```bash
 sudo apt-get update
-sudo apt-get install cmake
+sudo apt-get install -y g++ cmake
 ```
 
 ---
@@ -77,7 +78,12 @@ Target the `dev-rt` branch:
 ```bash
 cd ~
 git clone https://github.com/SimulationEverywhere/cadmium_v2 -b dev-rt
+cd cadmium_v2
+git submodule update --init --recursive
+cd ~
 ```
+
+> **Note:** The submodule step is required — it pulls in the nlohmann/json dependency. Without it the build will fail with `nlohmann/json.hpp: No such file or directory`.
 
 ### Configure Cadmium Path
 
@@ -91,13 +97,6 @@ If your Cadmium is installed elsewhere:
 
 ```bash
 export CADMIUM=/path/to/your/cadmium_v2/include
-```
-
-**Tip:** Add this export to your `~/.bashrc` or `~/.zshrc` to make it persistent:
-
-```bash
-echo 'export CADMIUM=~/cadmium_v2/include' >> ~/.bashrc  # or ~/.zshrc for zsh
-source ~/.bashrc  # or source ~/.zshrc
 ```
 
 **Note:** On the DEVSsim servers, Cadmium v2 is typically pre-installed and the `$CADMIUM` environment variable is already configured.
@@ -116,6 +115,12 @@ This produces the executable at `bin/chess_variant`.
 
 ## Running Simulations
 
+### Run all 14 scenarios at once
+
+```bash
+bash scripts/run_all_scenarios.sh
+```
+
 ### Run a single scenario
 
 ```bash
@@ -130,11 +135,6 @@ Example — run Kernel 1 for 60 generations:
 
 Output CSV is written to `logs/<scenario_name>_grid_log.csv`.
 
-### Run all 14 scenarios at once
-
-```bash
-bash scripts/run_all_scenarios.sh
-```
 
 ---
 
