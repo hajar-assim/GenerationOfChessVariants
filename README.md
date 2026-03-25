@@ -18,7 +18,7 @@ The model is based on the original CD++ implementation by Mikael Fridenfalk (Upp
 
 The system extends the original four baseline scenarios with ten additional configurations exploring different initial conditions, boundary settings, and chess-piece movement patterns (bishop, rook, knight) as alternative neighbourhood topologies.
 
-The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVariants_Report.pdf).
+The full report is available in [`ChessVariants_Report.pdf`](ChessVariants_Report.pdf).
 
 ---
 
@@ -30,7 +30,6 @@ The full report is available in [`docs/ChessVariants_Report.pdf`](docs/ChessVari
 ├── config/                 # JSON scenario configuration files (14 scenarios)
 ├── scripts/                # Shell scripts to run each scenario
 ├── logs/                   # Simulation output CSV logs (14 files)
-├── docs/                   # Report PDF and screenshots
 ├── simulation_videos/      # Simulation visualization videos
 ├── CMakeLists.txt          # Top-level CMake configuration
 ├── build_sim.sh            # Build script
