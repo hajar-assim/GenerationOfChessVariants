@@ -18,7 +18,7 @@ The model is based on the original CD++ implementation by Mikael Fridenfalk (Upp
 
 The system extends the original four baseline scenarios with ten additional configurations exploring different initial conditions, boundary settings, and chess-piece movement patterns (bishop, rook, knight) as alternative neighbourhood topologies.
 
-The full report is available in [`ChessVariants_Report.pdf`](ChessVariants_Report.pdf).
+The full report is available in [`SYSC4906_A2_ChessVariants_Report.docx`](SYSC4906_A2_ChessVariants_Report.docx).
 
 ---
 
