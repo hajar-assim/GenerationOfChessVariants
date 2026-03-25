@@ -26,15 +26,17 @@ The full report is available in [`SYSC4906_A2_ChessVariants_Report.docx`](SYSC49
 
 ```
 .
-├── main/                   # C++ source code (chessVariantCell.hpp, chessVariantState.hpp, main.cpp)
-├── config/                 # JSON scenario configuration files (14 scenarios)
-├── scripts/                # Shell scripts to run each scenario
-├── logs/                   # Simulation output CSV logs (14 files)
-├── simulation_videos/      # Simulation visualization videos
-├── CMakeLists.txt          # Top-level CMake configuration
-├── build_sim.sh            # Build script
-├── .gitattributes          # Ensures LF line endings for scripts and CSVs
-└── README.md               # This file
+├── main/                                   # C++ source code (chessVariantCell.hpp, chessVariantState.hpp, main.cpp)
+├── config/                                 # JSON scenario configuration files (14 scenarios)
+├── scripts/                                # Shell scripts to run each scenario
+├── logs/                                   # Simulation output CSV logs (14 files)
+├── simulation_videos/                      # Simulation visualization videos
+├── CMakeLists.txt                          # Top-level CMake configuration
+├── build_sim.sh                            # Build script
+├── .gitattributes                          # Ensures LF line endings for scripts and CSVs
+├── DEVSmodelsForm.pdf                      # The provided DEVSmodelsForm
+├── SYSC4906_A2_ChessVariants_Report.docx   # Report
+└── README.md                               # This file
 ```
 
 ---
